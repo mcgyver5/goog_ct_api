@@ -1,6 +1,6 @@
 import requests
 
-def get_logs():
+def requestLogs():
   return 200
   
   
