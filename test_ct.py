@@ -21,8 +21,8 @@ class TestCTLogs(unittest.TestCase):
         self.assertEqual(expected,first_domain)
 
     def test_calling_url(self):
-        my_domain_list = ctlogs.get_domains_from_api("dhs.state.mn.us")
-        expected = "qa.childsupport.dhs.state.mn.us"
+        my_domain_list = ctlogs.get_domains_from_api("python.org")
+        expected = "mail.python.org"
         domain_in_list = expected in my_domain_list
         self.assertTrue(domain_in_list)
 if __name__ == '__main__':
