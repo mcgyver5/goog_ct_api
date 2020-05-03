@@ -1,5 +1,7 @@
+import sys
 import json
-import requests
+
+from urllib.request import urlopen
 
 def requestLogs(domain):
     return 200
@@ -27,11 +29,22 @@ def get_domains_from_api(domain):
     my_domain_list = []
     try:
         api_url = "https://crt.sh/?q=%.{}&output=json".format(domain)
-        data = requests.get(api_url)
-        json_list = json.loads(data.text)
+        #data = requests.get(api_url)
+        data = urlopen(api_url).read()
+        json_list = json.loads(data)
         my_domain_list = get_domains_from_json_list(json_list)
     except Exception as e:
         print("error")
         print(e)
     return my_domain_list
+
+if __name__ == '__main__':
+    if len(sys.argv) < 1:
+        print("usage:  python ct.logs.py domain")
+    else:
+        domain = sys.argv[1]
+        print(domain)
+        domain_list = get_domains_from_api(domain)
+        for found_domain in domain_list:
+            print(found_domain)
 
